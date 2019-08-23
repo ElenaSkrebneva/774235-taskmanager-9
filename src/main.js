@@ -1,8 +1,9 @@
-const main = document.querySelector(".main")
-const mainControl = document.querySelector(".main__control")
+'use strict';
+const main = document.querySelector(`.main`);
+const mainControl = document.querySelector(`.main__control`);
 
-//Меню
-const menu = function() {
+//  Меню
+const menu = () => {
   return `
   <input
     type="radio"
@@ -28,9 +29,10 @@ const menu = function() {
     class="control__input visually-hidden"
   />
   <label for="control__statistic" class="control__label">STATISTICS</label>
-  `
-}
-//Поиск
+  `;
+};
+
+//  Поиск
 const search = () => {
   return `
   <input
@@ -40,10 +42,10 @@ const search = () => {
       placeholder="START TYPING — SEARCH BY WORD, #HASHTAG OR DATE"
     />
     <label class="visually-hidden" for="search__input">Search</label>
-    `
-}
+    `;
+};
 
-//Фильтры
+//  Фильтры
 const filters = () => {
   return `
     <input
@@ -115,10 +117,10 @@ const filters = () => {
     <label for="filter__archive" class="filter__label"
       >Archive <span class="filter__archive-count">115</span></label
     >
-  `
-}
+  `;
+};
 
-//Карточка задачи
+//  Карточка задачи
 const usualCard = () => {
   return `
   <div class="card__form">
@@ -184,10 +186,10 @@ const usualCard = () => {
       </div>
     </div>
   </div>
-  `
-}
+  `;
+};
 
-//Форма создания/редактирования задачи (используется одна форма)
+//  Форма создания/редактирования задачи (используется одна форма)
 const editCardForm = () => {
   return `
   <form class="card__form" method="get">
@@ -409,70 +411,75 @@ const editCardForm = () => {
       </div>
     </div>
   </form>
-  `
+  `;
+};
+
+function drawMenu(container) {
+  let markup = menu();
+  container.classList.add(`control__btn-wrap`);
+  container.innerHTML = markup;
+  let parent = mainControl;
+  parent.appendChild(container);
+  return ``;
 }
 
-function drawMenu (container) {
-  let markup = menu()
-  container.classList.add("control__btn-wrap")
-  container.innerHTML = markup
-  let parent = mainControl
-  parent.appendChild(container)
-  return ""
-}
 function drawSearch(container) {
-  let markup = search()
-  container.classList.add("main__search", "search", "container")
-  container.innerHTML = markup
-  let parent = main
-  parent.appendChild(container)
-  return ""
+  let markup = search();
+  container.classList.add(`main__search`, `search`, `container`);
+  container.innerHTML = markup;
+  let parent = main;
+  parent.appendChild(container);
+  return ``;
 }
+
 function drawFilters(container) {
-  let markup = filters()
-  container.classList.add("main__filter", "filter", "container")
-  container.innerHTML = markup
-  let parent = main
-  parent.appendChild(container)
-  return ""
+  let markup = filters();
+  container.classList.add(`main__filter`, `filter`, `container`);
+  container.innerHTML = markup;
+  let parent = main;
+  parent.appendChild(container);
+  return ``;
 }
+
 function drawUsualCard(container) {
-  let markup = usualCard()
-  container.classList.add("card", "card--black")
-  container.innerHTML = markup
-  let parent = boardTasks
-  parent.appendChild(container)
-  return ""
+  let markup = usualCard();
+  container.classList.add(`card`, `card--black`);
+  container.innerHTML = markup;
+  let parent = boardTasks;
+  parent.appendChild(container);
+  return ``;
 }
+
 function drawEditCardForm(container) {
-  let markup = editCardForm()
-  container.classList.add("card", "card--edit", "card--yellow", "card--repeat")
-  container.innerHTML = markup
-  let parent = boardTasks
-  parent.appendChild(container)
-  return ""
+  let markup = editCardForm();
+  container.classList.add(`card`, `card--edit`, `card--yellow`, `card--repeat`);
+  container.innerHTML = markup;
+  let parent = boardTasks;
+  parent.appendChild(container);
+  return ``;
 }
+
 function drawLoadMoreBtn() {
-  let btn = document.createElement("button")
-  btn.classList.add("load-more")
-  btn.type = "button"
-  let parent = board
-  parent.appendChild(btn)
-  return ""
+  let btn = document.createElement(`button`);
+  btn.classList.add(`load-more`);
+  btn.type = `button`;
+  let parent = board;
+  parent.appendChild(btn);
+  return ``;
 }
 
-drawMenu(document.createElement("section"))
-drawSearch(document.createElement("section"))
-drawFilters(document.createElement("section"))
+drawMenu(document.createElement(`section`));
+drawSearch(document.createElement(`section`));
+drawFilters(document.createElement(`section`));
 
-const board = document.createElement("section")
-board.classList.add("board", "container")
-main.appendChild(board)
-const boardTasks = document.createElement("div")
-boardTasks.classList.add("board__tasks")
-board.appendChild(boardTasks)
-drawEditCardForm(document.createElement("article"))
-drawUsualCard(document.createElement("article"))
-drawUsualCard(document.createElement("article"))
-drawUsualCard(document.createElement("article"))
-drawLoadMoreBtn()
+const board = document.createElement(`section`);
+board.classList.add(`board`, `container`);
+main.appendChild(board);
+const boardTasks = document.createElement(`div`);
+boardTasks.classList.add(`board__tasks`);
+board.appendChild(boardTasks);
+drawEditCardForm(document.createElement(`article`));
+drawUsualCard(document.createElement(`article`));
+drawUsualCard(document.createElement(`article`));
+drawUsualCard(document.createElement(`article`));
+drawLoadMoreBtn();
