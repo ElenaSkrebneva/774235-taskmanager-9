@@ -1,9 +1,6 @@
 'use strict';
-const main = document.querySelector(`.main`);
-const mainControl = document.querySelector(`.main__control`);
-
 //  Меню
-const menu = () => {
+const createMenu = () => {
   return `
   <input
     type="radio"
@@ -31,9 +28,8 @@ const menu = () => {
   <label for="control__statistic" class="control__label">STATISTICS</label>
   `;
 };
-
 //  Поиск
-const search = () => {
+const createSearch = () => {
   return `
   <input
       type="text"
@@ -44,9 +40,8 @@ const search = () => {
     <label class="visually-hidden" for="search__input">Search</label>
     `;
 };
-
 //  Фильтры
-const filters = () => {
+const createFilters = () => {
   return `
     <input
       type="radio"
@@ -119,78 +114,8 @@ const filters = () => {
     >
   `;
 };
-
-//  Карточка задачи
-const usualCard = () => {
-  return `
-  <div class="card__form">
-    <div class="card__inner">
-      <div class="card__control">
-        <button type="button" class="card__btn card__btn--edit">
-          edit
-        </button>
-        <button type="button" class="card__btn card__btn--archive">
-          archive
-        </button>
-        <button
-          type="button"
-          class="card__btn card__btn--favorites card__btn--disabled"
-        >
-          favorites
-        </button>
-      </div>
-
-      <div class="card__color-bar">
-        <svg class="card__color-bar-wave" width="100%" height="10">
-          <use xlink:href="#wave"></use>
-        </svg>
-      </div>
-
-      <div class="card__textarea-wrap">
-        <p class="card__text">Example default task with default color.</p>
-      </div>
-
-      <div class="card__settings">
-        <div class="card__details">
-          <div class="card__dates">
-            <div class="card__date-deadline">
-              <p class="card__input-deadline-wrap">
-                <span class="card__date">23 September</span>
-                <span class="card__time">11:15 PM</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="card__hashtag">
-            <div class="card__hashtag-list">
-              <span class="card__hashtag-inner">
-                <span class="card__hashtag-name">
-                  #todo
-                </span>
-              </span>
-
-              <span class="card__hashtag-inner">
-                <span class="card__hashtag-name">
-                  #personal
-                </span>
-              </span>
-
-              <span class="card__hashtag-inner">
-                <span class="card__hashtag-name">
-                  #important
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  `;
-};
-
 //  Форма создания/редактирования задачи (используется одна форма)
-const editCardForm = () => {
+const createEditCardForm = () => {
   return `
   <form class="card__form" method="get">
     <div class="card__inner">
@@ -413,73 +338,102 @@ const editCardForm = () => {
   </form>
   `;
 };
+//  Карточка задачи
+const createUsualCard = () => {
+  return `
+  <div class="card__form">
+    <div class="card__inner">
+      <div class="card__control">
+        <button type="button" class="card__btn card__btn--edit">
+          edit
+        </button>
+        <button type="button" class="card__btn card__btn--archive">
+          archive
+        </button>
+        <button
+          type="button"
+          class="card__btn card__btn--favorites card__btn--disabled"
+        >
+          favorites
+        </button>
+      </div>
 
-function drawMenu(container) {
-  let markup = menu();
-  container.classList.add(`control__btn-wrap`);
+      <div class="card__color-bar">
+        <svg class="card__color-bar-wave" width="100%" height="10">
+          <use xlink:href="#wave"></use>
+        </svg>
+      </div>
+
+      <div class="card__textarea-wrap">
+        <p class="card__text">Example default task with default color.</p>
+      </div>
+
+      <div class="card__settings">
+        <div class="card__details">
+          <div class="card__dates">
+            <div class="card__date-deadline">
+              <p class="card__input-deadline-wrap">
+                <span class="card__date">23 September</span>
+                <span class="card__time">11:15 PM</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="card__hashtag">
+            <div class="card__hashtag-list">
+              <span class="card__hashtag-inner">
+                <span class="card__hashtag-name">
+                  #todo
+                </span>
+              </span>
+
+              <span class="card__hashtag-inner">
+                <span class="card__hashtag-name">
+                  #personal
+                </span>
+              </span>
+
+              <span class="card__hashtag-inner">
+                <span class="card__hashtag-name">
+                  #important
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+};
+
+// Necessary markup elements
+const main = document.querySelector(`.main`);
+const mainControl = document.querySelector(`.main__control`);
+
+// Render function
+const render = (markup, container, classes, parent) => {
+  for (let i=0; i<classes.length; i++) {
+    container.classList.add(classes[i]);
+  }
   container.innerHTML = markup;
-  let parent = mainControl;
   parent.appendChild(container);
   return ``;
-}
+};
 
-function drawSearch(container) {
-  let markup = search();
-  container.classList.add(`main__search`, `search`, `container`);
-  container.innerHTML = markup;
-  let parent = main;
-  parent.appendChild(container);
-  return ``;
-}
-
-function drawFilters(container) {
-  let markup = filters();
-  container.classList.add(`main__filter`, `filter`, `container`);
-  container.innerHTML = markup;
-  let parent = main;
-  parent.appendChild(container);
-  return ``;
-}
-
-function drawUsualCard(container) {
-  let markup = usualCard();
-  container.classList.add(`card`, `card--black`);
-  container.innerHTML = markup;
-  let parent = boardTasks;
-  parent.appendChild(container);
-  return ``;
-}
-
-function drawEditCardForm(container) {
-  let markup = editCardForm();
-  container.classList.add(`card`, `card--edit`, `card--yellow`, `card--repeat`);
-  container.innerHTML = markup;
-  let parent = boardTasks;
-  parent.appendChild(container);
-  return ``;
-}
-
-function drawLoadMoreBtn() {
-  let btn = document.createElement(`button`);
-  btn.classList.add(`load-more`);
-  btn.type = `button`;
-  let parent = board;
-  parent.appendChild(btn);
-  return ``;
-}
-
-drawMenu(document.createElement(`section`));
-drawSearch(document.createElement(`section`));
-drawFilters(document.createElement(`section`));
-
+//Render
+render(createMenu(), document.createElement(`section`), [`control__btn-wrap`], mainControl);
+render(createSearch(), document.createElement(`section`), [`main__search`, `search`, `container`], main);
+render(createFilters(), document.createElement(`section`), [`main__filter`, `filter`, `container`], main);
 const board = document.createElement(`section`);
 board.classList.add(`board`, `container`);
 main.appendChild(board);
 const boardTasks = document.createElement(`div`);
 boardTasks.classList.add(`board__tasks`);
 board.appendChild(boardTasks);
-drawEditCardForm(document.createElement(`article`));
-drawUsualCard(document.createElement(`article`));
-drawUsualCard(document.createElement(`article`));
-drawUsualCard(document.createElement(`article`));
-drawLoadMoreBtn();
+render(createEditCardForm(), document.createElement(`article`), [`card`, `card--black`, `card--edit`, `card--repeat`], boardTasks);
+render(createUsualCard(), document.createElement(`article`), [`card`, `card--yellow`], boardTasks);
+render(createUsualCard(), document.createElement(`article`), [`card`, `card--yellow`], boardTasks);
+render(createUsualCard(), document.createElement(`article`), [`card`, `card--yellow`], boardTasks);
+render(``, document.createElement(`button`), [`load-more`], board);
+document.querySelector(".load-more").type = `button`;
