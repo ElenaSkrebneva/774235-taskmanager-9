@@ -413,7 +413,7 @@ const mainControl = document.querySelector(`.main__control`);
 
 // Render function
 const render = (markup, container, classes, parent) => {
-  for (let i=0; i<classes.length; i++) {
+  for (let i = 0; i < classes.length; i++) {
     container.classList.add(classes[i]);
   }
   container.innerHTML = markup;
@@ -421,7 +421,7 @@ const render = (markup, container, classes, parent) => {
   return ``;
 };
 
-//Render
+// Render
 render(createMenu(), document.createElement(`section`), [`control__btn-wrap`], mainControl);
 render(createSearch(), document.createElement(`section`), [`main__search`, `search`, `container`], main);
 render(createFilters(), document.createElement(`section`), [`main__filter`, `filter`, `container`], main);
@@ -436,4 +436,4 @@ render(createUsualCard(), document.createElement(`article`), [`card`, `card--yel
 render(createUsualCard(), document.createElement(`article`), [`card`, `card--yellow`], boardTasks);
 render(createUsualCard(), document.createElement(`article`), [`card`, `card--yellow`], boardTasks);
 render(``, document.createElement(`button`), [`load-more`], board);
-document.querySelector(".load-more").type = `button`;
+document.querySelector(`.load-more`).type = `button`;
