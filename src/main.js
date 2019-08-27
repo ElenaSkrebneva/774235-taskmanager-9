@@ -1,7 +1,6 @@
 'use strict';
 //  Меню
-const createMenu = () => {
-  return `
+const createMenu = () => `
   <input
     type="radio"
     name="control"
@@ -27,10 +26,8 @@ const createMenu = () => {
   />
   <label for="control__statistic" class="control__label">STATISTICS</label>
   `;
-};
 //  Поиск
-const createSearch = () => {
-  return `
+const createSearch = () => `
   <input
       type="text"
       id="search__input"
@@ -39,10 +36,8 @@ const createSearch = () => {
     />
     <label class="visually-hidden" for="search__input">Search</label>
     `;
-};
 //  Фильтры
-const createFilters = () => {
-  return `
+const createFilters = () => `
     <input
       type="radio"
       id="filter__all"
@@ -113,10 +108,8 @@ const createFilters = () => {
       >Archive <span class="filter__archive-count">115</span></label
     >
   `;
-};
 //  Форма создания/редактирования задачи (используется одна форма)
-const createEditCardForm = () => {
-  return `
+const createEditCardForm = () => `
   <form class="card__form" method="get">
     <div class="card__inner">
       <div class="card__control">
@@ -337,10 +330,8 @@ const createEditCardForm = () => {
     </div>
   </form>
   `;
-};
 //  Карточка задачи
-const createUsualCard = () => {
-  return `
+const createUsualCard = () => `
   <div class="card__form">
     <div class="card__inner">
       <div class="card__control">
@@ -405,7 +396,6 @@ const createUsualCard = () => {
     </div>
   </div>
   `;
-};
 
 // Necessary markup elements
 const main = document.querySelector(`.main`);
