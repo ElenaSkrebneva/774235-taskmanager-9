@@ -1,6 +1,5 @@
 //  Поиск
-export const createSearch = () => {
-  return `
+export const createSearch = () => `
   <input
       type="text"
       id="search__input"
@@ -9,4 +8,3 @@ export const createSearch = () => {
     />
     <label class="visually-hidden" for="search__input">Search</label>
     `;
-};

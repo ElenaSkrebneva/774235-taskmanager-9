@@ -1,6 +1,5 @@
 //  Карточка задачи
-export const createUsualCard = () => {
-  return `
+export const createUsualCard = () => `
   <div class="card__form">
     <div class="card__inner">
       <div class="card__control">
@@ -65,4 +64,3 @@ export const createUsualCard = () => {
     </div>
   </div>
   `;
-};

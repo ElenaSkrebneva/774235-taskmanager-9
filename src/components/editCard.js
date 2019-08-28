@@ -1,6 +1,5 @@
 //  Форма создания/редактирования задачи (используется одна форма)
-export const createEditCardForm = () => {
-  return `
+export const createEditCardForm = () => `
   <form class="card__form" method="get">
     <div class="card__inner">
       <div class="card__control">
@@ -221,4 +220,3 @@ export const createEditCardForm = () => {
     </div>
   </form>
   `;
-};

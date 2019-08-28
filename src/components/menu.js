@@ -1,6 +1,5 @@
 //  Меню
-export const createMenu = () => {
-  return `
+export const createMenu = () => `
   <input
     type="radio"
     name="control"
@@ -26,4 +25,3 @@ export const createMenu = () => {
   />
   <label for="control__statistic" class="control__label">STATISTICS</label>
   `;
-};
