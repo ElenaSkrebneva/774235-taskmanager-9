@@ -1,6 +1,6 @@
 //  Форма создания/редактирования задачи (используется одна форма)
-export const createEditCardForm = () => `
-  <article class="card card--edit">
+export const createEditCardForm = ({description, dueDate, color, tags, repeatingDays}) => `
+  <article class="card card--edit card--${color} ${Object.keys(repeatingDays).some((day) => repeatingDays[day]) ? `card--repeat` : ``}">
     <form class="card__form" method="get">
       <div class="card__inner">
         <div class="card__control">
@@ -27,7 +27,7 @@ export const createEditCardForm = () => `
               class="card__text"
               placeholder="Start typing your text here..."
               name="text"
-            >This is example of new task, you can add picture, set date and time, add tags.</textarea>
+            >${description}</textarea>
           </label>
         </div>
 
@@ -35,7 +35,7 @@ export const createEditCardForm = () => `
           <div class="card__details">
             <div class="card__dates">
               <button class="card__date-deadline-toggle" type="button">
-                date: <span class="card__date-status">no</span>
+                date: <span class="card__date-status">${dueDate ? `yes` : `no`}</span>
               </button>
 
               <fieldset class="card__date-deadline" disabled>
@@ -43,17 +43,17 @@ export const createEditCardForm = () => `
                   <input
                     class="card__date"
                     type="text"
-                    placeholder="23 September"
+                    placeholder="${new Date(dueDate).toDateString()}"
                     name="date"
                   />
                 </label>
               </fieldset>
 
               <button class="card__repeat-toggle" type="button">
-                repeat:<span class="card__repeat-status">no</span>
+                repeat:<span class="card__repeat-status">${Object.keys(repeatingDays).some((day) => repeatingDays[day]) ? `yes` : `no`}</span>
               </button>
 
-              <fieldset class="card__repeat-days" disabled>
+              <fieldset class="card__repeat-days">
                 <div class="card__repeat-days-inner">
                   <input
                     class="visually-hidden card__repeat-day-input"
@@ -133,7 +133,15 @@ export const createEditCardForm = () => `
             </div>
 
             <div class="card__hashtag">
-              <div class="card__hashtag-list"></div>
+            <div class="card__hashtag-list">
+              ${Array.from(tags).map((tag) => `
+                <span class="card__hashtag-inner">
+                  <span class="card__hashtag-name">
+                    #${tag}
+                  </span>
+                </span>
+                `).join(``)}
+            </div>
 
               <label>
                 <input

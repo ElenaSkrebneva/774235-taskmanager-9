@@ -5,6 +5,7 @@ import {createFilters} from '../src/components/filters.js';
 import {createEditCardForm} from '../src/components/editCard.js';
 import {createUsualCard} from '../src/components/usualCard.js';
 import {createLoadMoreBtn} from '../src/components/loadMoreBtn.js';
+import {getTask} from '../src/components/data.js';
 
 // Necessary markup elements
 const main = document.querySelector(`.main`);
@@ -26,8 +27,8 @@ main.appendChild(board);
 const boardTasks = document.createElement(`div`);
 boardTasks.classList.add(`board__tasks`);
 board.appendChild(boardTasks);
-render(createEditCardForm(), boardTasks, `beforeend`);
-render(createUsualCard(), boardTasks, `beforeend`);
-render(createUsualCard(), boardTasks, `beforeend`);
-render(createUsualCard(), boardTasks, `beforeend`);
+render(createEditCardForm(getTask()), boardTasks, `beforeend`);
+render(createUsualCard(getTask()), boardTasks, `beforeend`);
+render(createUsualCard(getTask()), boardTasks, `beforeend`);
+render(createUsualCard(getTask()), boardTasks, `beforeend`);
 render(createLoadMoreBtn(), board, `beforeend`);
