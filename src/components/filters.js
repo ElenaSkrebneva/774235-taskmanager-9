@@ -1,5 +1,6 @@
 //  Фильтры
 export const createFilters = () => `
+  <section class="main__filter filter container">
     <input
       type="radio"
       id="filter__all"
@@ -69,4 +70,5 @@ export const createFilters = () => `
     <label for="filter__archive" class="filter__label"
       >Archive <span class="filter__archive-count">115</span></label
     >
+  </section>
   `;
