@@ -14,25 +14,40 @@ const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
 // Task count
-const TASK_COUNT = 3;
+const TASK_COUNT = 20;
 
+// create task array
+const tasksArray = [];
+for (let i = 0; i < TASK_COUNT; i++) {
+  tasksArray.push(getTask());
+}
+
+// count for filters
+for (let i = 0; i < tasksArray.length; i++) {
+  if (tasksArray[i].dueDate < Date.now()) {
+    filters.find((filter) => filter.title === `overdue`).count++;
+  }
+  if (tasksArray[i].isFavorite) {
+    filters.find((filter) => filter.title === `favorites`).count++;
+  }
+  if (tasksArray[i].isArchived) {
+    filters.find((filter) => filter.title === `archive`).count++;
+  }
+  if (Object.keys(tasksArray[i].repeatingDays) == true))) {
+    filters.find((filter) => filter.title === `repeating`).count++;
+  }
+}
 // Render functions
 const render = (element, parent, place) => {
   parent.insertAdjacentHTML(place, element);
   return ``;
 };
-const renderTasks = (parent, howMany) => {
-  for (let i = 0; i < howMany; i++) {
-    let element = createUsualCard(getTask());
-    parent.innerHTML += element;
-  }
-};
 // filters renderer
-const renderFilters = (parent, place) => {
+const renderFilters = (parent) => {
   let container = document.createElement(`section`);
   container.classList.add(`main__filter`, `filter`, `container`);
   for (let i = 0; i < filters.length; i++) {
-    container.innerHTML += createFilter(filters[i].title);
+    container.innerHTML += createFilter(filters[i].title, filters[i].count);
   }
   parent.appendChild(container);
 };
@@ -48,5 +63,9 @@ const boardTasks = document.createElement(`div`);
 boardTasks.classList.add(`board__tasks`);
 board.appendChild(boardTasks);
 render(createEditCardForm(getTask()), boardTasks, `beforeend`);
-renderTasks(boardTasks, TASK_COUNT);
+
+// render usual cards
+for (let i = 0; i < tasksArray.length; i++) {
+  render(createUsualCard(tasksArray[i]), boardTasks, `beforeend`);
+}
 render(createLoadMoreBtn(), board, `beforeend`);

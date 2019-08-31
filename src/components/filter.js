@@ -1,5 +1,5 @@
 //  Фильтры
-export const createFilter = (name) => `
+export const createFilter = (name, count) => `
       <input
       type="radio"
       id="filter__${name}"
@@ -8,6 +8,6 @@ export const createFilter = (name) => `
       checked
     />
     <label for="filter__${name}" class="filter__label">
-      ${name} <span class="filter__${name}-count"></span></label
+      ${name} <span class="filter__${name}-count">${count}</span></label
     >
   `;
