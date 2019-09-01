@@ -4,7 +4,7 @@ import {filters} from '../src/components/filters.js';
 import {createMenu} from '../src/components/menu.js';
 import {createSearch} from '../src/components/search.js';
 import {createFilter} from '../src/components/filter.js';
-import {createEditCardForm} from '../src/components/editCard.js';
+// import {createEditCardForm} from '../src/components/editCard.js';
 import {createUsualCard} from '../src/components/usualCard.js';
 import {createLoadMoreBtn} from '../src/components/loadMoreBtn.js';
 
@@ -24,9 +24,7 @@ for (let i = 0; i < TASK_COUNT; i++) {
 }
 const taskSlices = [];
 for (let i = 0; i < TASK_COUNT / RENDER_TASK_COUNT; i++) {
-  taskSlices.push(
-    tasksArray.slice(i * RENDER_TASK_COUNT, (i+1) * RENDER_TASK_COUNT)
-  )
+  taskSlices.push(tasksArray.slice(i * RENDER_TASK_COUNT, (i + 1) * RENDER_TASK_COUNT));
 }
 
 // counts for filters
@@ -81,13 +79,15 @@ taskSlices.shift();
 if (TASK_COUNT > RENDER_TASK_COUNT) {
   render(createLoadMoreBtn(), board, `beforeend`);
   const loadMore = document.querySelector(`.load-more`);
-  loadMore.addEventListener(`click`, function() {
+  loadMore.addEventListener(`click`, function () {
     if (Array.isArray(taskSlices) && taskSlices.length) {
       for (let i = 0; i < taskSlices[0].length; i++) {
         render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
       }
       taskSlices.shift();
     }
-  })
-  if (taskSlices.length == 0) {loadMore.style.display = `none`;}
+  });
+  if (taskSlices.length === 0) {
+    loadMore.style.display = `none`;
+  }
 }
