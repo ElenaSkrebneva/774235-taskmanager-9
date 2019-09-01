@@ -20,13 +20,13 @@ export const getTask = () => ({
     `keks`
   ]),
   repeatingDays: {
-    'mon': Boolean(Math.round(Math.random() * 0.7)),
-    'tue': Boolean(Math.round(Math.random() * 0.7)),
-    'wed': Boolean(Math.round(Math.random() * 0.7)),
-    'thu': Boolean(Math.round(Math.random() * 0.7)),
-    'fri': Boolean(Math.round(Math.random() * 0.7)),
-    'sat': Boolean(Math.round(Math.random() * 0.7)),
-    'sun': Boolean(Math.round(Math.random() * 0.7))
+    mon: Boolean(Math.round(Math.random() * 0.55)),
+    tue: Boolean(Math.round(Math.random() * 0.55)),
+    wed: Boolean(Math.round(Math.random() * 0.55)),
+    thu: Boolean(Math.round(Math.random() * 0.55)),
+    fri: Boolean(Math.round(Math.random() * 0.55)),
+    sat: Boolean(Math.round(Math.random() * 0.55)),
+    sun: Boolean(Math.round(Math.random() * 0.55))
   },
   isFavorite: Boolean(Math.round(Math.random())),
   isArchived: Boolean(Math.round(Math.random()))

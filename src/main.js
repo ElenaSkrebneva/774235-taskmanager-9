@@ -13,16 +13,23 @@ import {createLoadMoreBtn} from '../src/components/loadMoreBtn.js';
 const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
-// Task count
+// Task count and render task count
 const TASK_COUNT = 20;
+const RENDER_TASK_COUNT = 8;
 
-// create task array
+// create task array ans slices
 const tasksArray = [];
 for (let i = 0; i < TASK_COUNT; i++) {
   tasksArray.push(getTask());
 }
+const taskSlices = [];
+for (let i = 0; i < TASK_COUNT / RENDER_TASK_COUNT; i++) {
+  taskSlices.push(
+    tasksArray.slice(i * RENDER_TASK_COUNT, (i+1) * RENDER_TASK_COUNT)
+  )
+}
 
-// count for filters
+// counts for filters
 for (let i = 0; i < tasksArray.length; i++) {
   if (tasksArray[i].dueDate < Date.now()) {
     filters.find((filter) => filter.title === `overdue`).count++;
@@ -33,7 +40,8 @@ for (let i = 0; i < tasksArray.length; i++) {
   if (tasksArray[i].isArchived) {
     filters.find((filter) => filter.title === `archive`).count++;
   }
-  if (Object.keys(tasksArray[i].repeatingDays) == true))) {
+  let booleans = Object.values(tasksArray[i].repeatingDays);
+  if (booleans.some((bool) => bool === true)) {
     filters.find((filter) => filter.title === `repeating`).count++;
   }
 }
@@ -62,10 +70,24 @@ main.appendChild(board);
 const boardTasks = document.createElement(`div`);
 boardTasks.classList.add(`board__tasks`);
 board.appendChild(boardTasks);
-render(createEditCardForm(getTask()), boardTasks, `beforeend`);
 
-// render usual cards
-for (let i = 0; i < tasksArray.length; i++) {
-  render(createUsualCard(tasksArray[i]), boardTasks, `beforeend`);
+// render 8 first usual cards
+for (let i = 0; i < taskSlices[0].length; i++) {
+  render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
 }
-render(createLoadMoreBtn(), board, `beforeend`);
+taskSlices.shift();
+
+// render load-more button and add click event
+if (TASK_COUNT > RENDER_TASK_COUNT) {
+  render(createLoadMoreBtn(), board, `beforeend`);
+  const loadMore = document.querySelector(`.load-more`);
+  loadMore.addEventListener(`click`, function() {
+    if (Array.isArray(taskSlices) && taskSlices.length) {
+      for (let i = 0; i < taskSlices[0].length; i++) {
+        render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
+      }
+      taskSlices.shift();
+    }
+  })
+  if (taskSlices.length == 0) {loadMore.style.display = `none`;}
+}
