@@ -4,7 +4,7 @@ import {filters} from '../src/components/filters.js';
 import {createMenu} from '../src/components/menu.js';
 import {createSearch} from '../src/components/search.js';
 import {createFilter} from '../src/components/filter.js';
-// import {createEditCardForm} from '../src/components/editCard.js';
+import {createEditCardForm} from '../src/components/editCard.js';
 import {createUsualCard} from '../src/components/usualCard.js';
 import {createLoadMoreBtn} from '../src/components/loadMoreBtn.js';
 
@@ -29,6 +29,10 @@ for (let i = 0; i < TASK_COUNT / RENDER_TASK_COUNT; i++) {
 
 // counts for filters
 for (let i = 0; i < tasksArray.length; i++) {
+  filters.find((filter) => filter.title === `all`).count++;
+  if (tasksArray[i].dueDate >= Date.now()) {
+    filters.find((filter) => filter.title === `today`).count++;
+  }
   if (tasksArray[i].dueDate < Date.now()) {
     filters.find((filter) => filter.title === `overdue`).count++;
   }
@@ -41,6 +45,9 @@ for (let i = 0; i < tasksArray.length; i++) {
   let booleans = Object.values(tasksArray[i].repeatingDays);
   if (booleans.some((bool) => bool === true)) {
     filters.find((filter) => filter.title === `repeating`).count++;
+  }
+  if (tasksArray[i].tags.size > 0) {
+    filters.find((filter) => filter.title === `tags`).count++;
   }
 }
 // Render functions
@@ -70,7 +77,8 @@ boardTasks.classList.add(`board__tasks`);
 board.appendChild(boardTasks);
 
 // render 8 first usual cards
-for (let i = 0; i < taskSlices[0].length; i++) {
+render(createEditCardForm(taskSlices[0][0]), boardTasks, `beforeend`);
+for (let i = 1; i < taskSlices[0].length; i++) {
   render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
 }
 taskSlices.shift();
@@ -85,9 +93,9 @@ if (TASK_COUNT > RENDER_TASK_COUNT) {
         render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
       }
       taskSlices.shift();
+      if (taskSlices.length === 0) {
+        loadMore.style.display = `none`;
+      }
     }
   });
-  if (taskSlices.length === 0) {
-    loadMore.style.display = `none`;
-  }
 }

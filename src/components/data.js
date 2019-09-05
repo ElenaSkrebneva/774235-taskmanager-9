@@ -1,3 +1,18 @@
+const getTags = () => {
+  let num = Math.floor((Math.random() * 3 - 0.5));
+  let tagsAr = [
+    `homework`,
+    `theory`,
+    `practice`,
+    `intensive`,
+    `keks`
+  ];
+  let tagsSet = new Set();
+  for (let i = 0; i <= num; i++) {
+    tagsSet.add(tagsAr[Math.floor(Math.random() * tagsAr.length)]);
+  }
+  return tagsSet;
+};
 export const getTask = () => ({
   description: [
     `Изучить теорию`,
@@ -12,13 +27,7 @@ export const getTask = () => ({
     `pink`,
     `green`
   ][Math.floor(Math.random() * 5)],
-  tags: new Set([
-    `homework`,
-    `theory`,
-    `practice`,
-    `intensive`,
-    `keks`
-  ]),
+  tags: getTags(),
   repeatingDays: {
     mon: Boolean(Math.round(Math.random() * 0.55)),
     tue: Boolean(Math.round(Math.random() * 0.55)),
