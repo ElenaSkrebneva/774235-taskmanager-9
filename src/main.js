@@ -87,7 +87,7 @@ taskSlices.shift();
 if (TASK_COUNT > RENDER_TASK_COUNT) {
   render(createLoadMoreBtn(), board, `beforeend`);
   const loadMore = document.querySelector(`.load-more`);
-  loadMore.addEventListener(`click`, function () {
+  loadMore.addEventListener(`click`, () => {
     if (Array.isArray(taskSlices) && taskSlices.length) {
       for (let i = 0; i < taskSlices[0].length; i++) {
         render(createUsualCard(taskSlices[0][i]), boardTasks, `beforeend`);
