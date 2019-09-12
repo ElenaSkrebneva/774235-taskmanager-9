@@ -29,7 +29,7 @@ const getTags = () => {
   return tagsSet;
 };
 
-export const getTask = () => ({
+export const getTaskData = () => ({
   description: descriptionAr[Math.floor(Math.random() * 3)],
   dueDate: Date.now() + Math.floor((Math.random() * 2 - 1) * 7 * 24 * 3600000),
   color: colorAr[Math.floor(Math.random() * 5)],
