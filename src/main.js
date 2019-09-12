@@ -89,7 +89,7 @@ const renderTask = (taskMock) => {
       document.removeEventListener(`keydown`, onEscKeyDown);
     }
   };
-  /*
+
   card.getElement().querySelector(`.card__btn--edit`).addEventListener(`click`, () => {
     boardTasks.replaceChild(cardEdit.getElement(), card.getElement());
     document.addEventListener(`keydown`, onEscKeyDown);
@@ -107,7 +107,6 @@ const renderTask = (taskMock) => {
     boardTasks.replaceChild(card.getElement(), cardEdit.getElement());
     document.removeEventListener(`keydown`, onEscKeyDown);
   });
-  */
 
   render(card.getElement(), boardTasks, `beforeend`);
 };

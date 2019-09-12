@@ -1,6 +1,6 @@
 //  Карточка задачи
 export class UsualCard {
-  constructor ({description, color, dueDate, tags, repeatingDays}) {
+  constructor({description, color, dueDate, tags, repeatingDays}) {
     this._description = description;
     this._color = color;
     this._dueDate = dueDate;

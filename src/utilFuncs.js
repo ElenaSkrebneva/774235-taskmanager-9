@@ -4,10 +4,9 @@ const createElement = (template) => {
   return newElement.firstChild;
 };
 const render = (element, parent, place) => {
-  if (place == `afterbegin`) {
+  if (place === `afterbegin`) {
     parent.prependChild(element);
-  }
-  else {
+  } else {
     parent.appendChild(element);
   }
 };
