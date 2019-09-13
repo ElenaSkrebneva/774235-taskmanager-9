@@ -5,6 +5,9 @@ export class Menu {
     newDiv.innerHTML = this.getTemplate();
     return newDiv.firstChild;
   }
+  removeElement() {
+    document.querySelector(`.control__btn-wrap`).remove();
+  }
   getTemplate() {
     return `<section class="control__btn-wrap">
         <input

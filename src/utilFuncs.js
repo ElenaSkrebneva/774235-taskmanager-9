@@ -10,10 +10,11 @@ const render = (element, parent, place) => {
     parent.appendChild(element);
   }
 };
-const unrender = (element) => {
+/*
+const removeElement = (element) => {
   if (element) {
     element.remove();
   }
 };
-
-export {createElement, render, unrender};
+*/
+export {createElement, render};

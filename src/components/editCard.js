@@ -10,14 +10,15 @@ export class EditCardForm {
     this._repeatingDays = repeatingDays;
     this._element = null;
   }
-
   getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
     return this._element;
   }
-
+  removeElement() {
+    this._element = null;
+  }
   getTemplate() {
     return `<article class="card card--edit card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
         <form class="card__form" method="get">

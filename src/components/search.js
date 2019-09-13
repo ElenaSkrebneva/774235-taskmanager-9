@@ -5,6 +5,9 @@ export class Search {
     newDiv.innerHTML = this.getTemplate();
     return newDiv.firstChild;
   }
+  removeElement() {
+    document.querySelector(`.main__search`).remove();
+  }
   getTemplate() {
     return `<section class="main__search search container">
         <input
