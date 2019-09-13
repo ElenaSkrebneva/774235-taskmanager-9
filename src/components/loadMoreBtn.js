@@ -1,3 +1,7 @@
-export const createLoadMoreBtn = () => `
-  <button type="button" class="load-more">Load More</button>
-`;
+export const createLoadMoreBtn = () => {
+  const btn = document.createElement(`button`);
+  btn.classList.add(`load-more`);
+  btn.type = `button`;
+  btn.innerHTML = `Load More`;
+  return btn;
+};
