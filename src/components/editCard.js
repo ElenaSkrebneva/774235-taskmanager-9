@@ -1,4 +1,6 @@
 //  Форма создания/редактирования задачи (используется одна форма)
+import {createElement} from '../utilFuncs.js';
+
 export class EditCardForm {
   constructor({description, dueDate, color, tags, repeatingDays}) {
     this._description = description;
@@ -10,17 +12,14 @@ export class EditCardForm {
   }
 
   getElement() {
-    if (this._element === null) {
-      const newElement = document.createElement(`div`);
-      newElement.innerHTML = this.getTemplate();
-      this._element = newElement.firstChild;
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
     }
     return this._element;
   }
 
   getTemplate() {
-    return `
-      <article class="card card--edit card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
+    return `<article class="card card--edit card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
         <form class="card__form" method="get">
           <div class="card__inner">
             <div class="card__control">

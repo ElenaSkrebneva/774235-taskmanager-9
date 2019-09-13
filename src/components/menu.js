@@ -1,13 +1,12 @@
 //  Меню
 export class Menu {
   getElement() {
-    let newDiv = document.createElement(`div`);
+    const newDiv = document.createElement(`div`);
     newDiv.innerHTML = this.getTemplate();
     return newDiv.firstChild;
   }
   getTemplate() {
-    return `
-      <section class="control__btn-wrap">
+    return `<section class="control__btn-wrap">
         <input
           type="radio"
           name="control"

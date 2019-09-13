@@ -6,8 +6,7 @@ export class Search {
     return newDiv.firstChild;
   }
   getTemplate() {
-    return `
-      <section class="main__search search container">
+    return `<section class="main__search search container">
         <input
           type="text"
           id="search__input"

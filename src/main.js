@@ -82,7 +82,6 @@ board.appendChild(boardTasks);
 const renderTask = (taskMock) => {
   const card = new UsualCard(taskMock);
   const cardEdit = new EditCardForm(taskMock);
-
   const onEscKeyDown = (evt) => {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       boardTasks.replaceChild(card.getElement(), cardEdit.getElement());

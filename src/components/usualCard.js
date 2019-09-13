@@ -1,4 +1,6 @@
 //  Карточка задачи
+import {createElement} from '../utilFuncs.js';
+
 export class UsualCard {
   constructor({description, color, dueDate, tags, repeatingDays}) {
     this._description = description;
@@ -9,16 +11,13 @@ export class UsualCard {
     this._element = null;
   }
   getElement() {
-    if (this._element === null) {
-      let newElement = document.createElement(`div`);
-      newElement.innerHTML = this.getTemplate();
-      this._element = newElement.firstChild;
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
     }
     return this._element;
   }
   getTemplate() {
-    return `
-      <article class="card card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
+    return `<article class="card card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
         <div class="card__form">
           <div class="card__inner">
             <div class="card__control">
