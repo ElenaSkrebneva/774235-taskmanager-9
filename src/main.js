@@ -15,7 +15,7 @@ const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
 // Task count and render task count
-const TASK_COUNT = 20;
+const TASK_COUNT = 10;
 const RENDER_TASK_COUNT = 8;
 
 // create task array and slices for display
@@ -111,10 +111,12 @@ const renderTask = (taskMock) => {
 };
 
 // render 8 first usual cards
-dataSlices[0].forEach((slice) => {
-  renderTask(slice);
-});
-dataSlices.shift();
+if (dataSlices.length > 0) {
+  dataSlices[0].forEach((slice) => {
+    renderTask(slice);
+  });
+  dataSlices.shift();
+}
 
 // render load-more button and add click event
 if (TASK_COUNT > RENDER_TASK_COUNT) {
@@ -132,4 +134,12 @@ if (TASK_COUNT > RENDER_TASK_COUNT) {
       }
     }
   });
+}
+
+// if boardTasks is empty
+if (boardTasks.children.length === 0) {
+  board.innerHTML = `<p class="board__no-tasks">
+    Congratulations, all tasks were completed! To create a new click on
+    «add new task» button.
+  </p>`;
 }
