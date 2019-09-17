@@ -1,12 +1,8 @@
 //  Меню
-export class Menu {
-  getElement() {
-    const newDiv = document.createElement(`div`);
-    newDiv.innerHTML = this.getTemplate();
-    return newDiv.firstChild;
-  }
-  removeElement() {
-    document.querySelector(`.control__btn-wrap`).remove();
+import {Component} from './component.js';
+export class Menu extends Component {
+  constructor() {
+    super();
   }
   getTemplate() {
     return `<section class="control__btn-wrap">

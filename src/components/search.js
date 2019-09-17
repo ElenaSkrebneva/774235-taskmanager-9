@@ -1,12 +1,8 @@
 //  Поиск
-export class Search {
-  getElement() {
-    let newDiv = document.createElement(`div`);
-    newDiv.innerHTML = this.getTemplate();
-    return newDiv.firstChild;
-  }
-  removeElement() {
-    document.querySelector(`.main__search`).remove();
+import {Component} from './component.js';
+export class Search extends Component {
+  constructor() {
+    super();
   }
   getTemplate() {
     return `<section class="main__search search container">
@@ -17,7 +13,6 @@ export class Search {
           placeholder="START TYPING — SEARCH BY WORD, #HASHTAG OR DATE"
         />
         <label class="visually-hidden" for="search__input">Search</label>
-      </section>
-        `;
+      </section>`;
   }
 }
