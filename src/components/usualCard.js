@@ -1,23 +1,13 @@
 //  Карточка задачи
-import {createElement} from '../utilFuncs.js';
-
-export class UsualCard {
+import {Component} from './component.js';
+export class UsualCard extends Component {
   constructor({description, color, dueDate, tags, repeatingDays}) {
+    super();
     this._description = description;
     this._color = color;
     this._dueDate = dueDate;
     this._tags = tags;
     this._repeatingDays = repeatingDays;
-    this._element = null;
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
   getTemplate() {
     return `<article class="card card--${this._color} ${Object.keys(this._repeatingDays).some((day) => this._repeatingDays[day]) ? `card--repeat` : ``}">
