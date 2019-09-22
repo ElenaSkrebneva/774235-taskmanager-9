@@ -48,11 +48,11 @@ export class EditCardForm extends Component {
                     date: <span class="card__date-status">${this._dueDate ? `yes` : `no`}</span>
                   </button>
 
-                  <fieldset class="card__date-deadline" disabled>
+                  <fieldset class="card__date-deadline">
                     <label class="card__input-deadline-wrap">
                       <input
                         class="card__date"
-                        type="text"
+                        type="date"
                         placeholder="${new Date(this._dueDate).toDateString()}"
                         name="date"
                       />
